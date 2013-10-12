@@ -10,11 +10,19 @@ package org.team484.frisbeebot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.image.BinaryImage;
+import edu.wpi.first.wpilibj.image.ColorImage;
+import edu.wpi.first.wpilibj.image.CriteriaCollection;
+import edu.wpi.first.wpilibj.image.NIVision;
+import edu.wpi.first.wpilibj.image.ParticleAnalysisReport;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.team484.frisbeebot.commands.CommandBase;
-import org.team484.frisbeebot.commands.ExampleCommand;
+import org.team484.frisbeebot.commands.StartAutonomous;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,11 +38,19 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    CriteriaCollection cc;
+    AxisCamera camera = AxisCamera.getInstance("10.4.84.11");
+    int periodics = 0;
     public void robotInit() {
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
+        autonomousCommand = new StartAutonomous();
         Compressor compressor = new Compressor(5, 1);
         compressor.start();
+        Relay camLED = new Relay(2);
+        camLED.set(Relay.Value.kForward);
+        cc = new CriteriaCollection();
+        cc.addCriteria(NIVision.MeasurementType.IMAQ_MT_BOUNDING_RECT_WIDTH, 30, 400, false);
+        cc.addCriteria(NIVision.MeasurementType.IMAQ_MT_BOUNDING_RECT_HEIGHT, 40, 400, false);
         
 
         // Initialize all subsystems
@@ -43,7 +59,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        autonomousCommand.start();
+        if (autonomousCommand != null) autonomousCommand.start();
     }
 
     /**
@@ -51,6 +67,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        
     }
 
     public void teleopInit() {
@@ -58,7 +75,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        //autonomousCommand.cancel();
+        autonomousCommand.cancel();
     }
 
     /**
@@ -66,7 +83,13 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-       
+        if (periodics < 100) {
+            periodics++;
+        } else {
+            centerCalculate();
+            periodics = 0;
+        }
+        Timer.delay(0.01);
     }
     
     /**
@@ -74,5 +97,41 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+        //centerCalculate();
+        Timer.delay(0.1);
+    }
+
+    private void centerCalculate() {
+        ColorImage image = null;
+        BinaryImage thresholdImage = null;
+        BinaryImage bigObjectsImage = null;
+        BinaryImage convexHullImage = null;
+        BinaryImage filteredImage = null;
+        try {
+            image = camera.getImage();
+            thresholdImage = image.thresholdRGB(0, 45, 0, 45, 25, 255);
+            bigObjectsImage = thresholdImage.removeSmallObjects(false, 1);
+            convexHullImage = bigObjectsImage.convexHull(false);
+            filteredImage = convexHullImage.particleFilter(cc);
+            ParticleAnalysisReport[] reports = filteredImage.getOrderedParticleAnalysisReports();
+                //for (int i = 0; i < reports.length + 1; i++) {
+                    System.out.print(reports[0].boundingRectWidth + " " + reports[0].boundingRectHeight);
+                //}
+                System.out.println();
+            
+        } catch (Exception e) {
+            
+        } finally {
+            
+        }
+        try {
+            filteredImage.free();
+            convexHullImage.free();
+            bigObjectsImage.free();
+            thresholdImage.free();
+            image.free();
+        } catch (Exception e) {
+            
+        }
     }
 }

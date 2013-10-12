@@ -1,33 +1,36 @@
-
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.team484.frisbeebot.commands;
 
-import com.sun.squawk.Address;
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.team484.frisbeebot.subsystems.Feeder;
 
 /**
  *
- * @author bradmiller
+ * @author Team484
  */
-public class ExampleCommand extends CommandBase {
-
-    public ExampleCommand() {
+public class FixFeeder extends CommandBase {
+    
+    public FixFeeder() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        
+        requires(feeder);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        setTimeout(1);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        feeder.fixFeeder();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

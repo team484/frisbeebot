@@ -4,8 +4,10 @@ package org.team484.frisbeebot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.team484.frisbeebot.commands.DriveDoNothing;
-import org.team484.frisbeebot.commands.DriveForward;
+import org.team484.frisbeebot.commands.FixFeeder;
+import org.team484.frisbeebot.commands.ShooterOn;
+import org.team484.frisbeebot.commands.SolenoidIn;
+import org.team484.frisbeebot.commands.SolenoidOut;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,7 +17,9 @@ public class OI {
     Joystick stick1 = new Joystick(1);
     Joystick stick2 = new Joystick(2);
     Joystick stick3 = new Joystick(3);
+    Button j1b1 =  new JoystickButton(stick1, 1);
     Button j1b2 = new JoystickButton(stick1, 2);
+    Button j1b3 = new JoystickButton(stick1, 3);
     Button j1b8 = new JoystickButton(stick1, 8);
     public double getStick1X() {
         return stick1.getX();
@@ -55,8 +59,11 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     public OI() {
-        j1b2.whileHeld(new DriveForward());
-        j1b8.whileHeld(new DriveDoNothing());
+        j1b2.whenPressed(new SolenoidOut());
+        j1b3.whenReleased(new SolenoidOut());
+        j1b3.whenPressed(new SolenoidIn());
+        j1b1.whileHeld(new ShooterOn());
+        j1b1.whenPressed(new FixFeeder());
     }
 }
 

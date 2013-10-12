@@ -33,9 +33,10 @@ public class Feeder extends Subsystem {
         } else {
             talon.set(0);
         }
+        //System.out.println(ir.get());
         return false;
     }
     public void fixFeeder() {
-        talon.set(0.3);
+        talon.set(0);
     }
 }

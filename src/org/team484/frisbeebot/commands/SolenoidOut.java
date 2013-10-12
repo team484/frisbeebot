@@ -1,19 +1,19 @@
-
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.team484.frisbeebot.commands;
-
-import com.sun.squawk.Address;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
- * @author bradmiller
+ * @author Team484
  */
-public class ExampleCommand extends CommandBase {
-
-    public ExampleCommand() {
+public class SolenoidOut extends CommandBase {
+    
+    public SolenoidOut() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        
+        requires(solenoidsub);
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +22,7 @@ public class ExampleCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        solenoidsub.solenoidOut();
     }
 
     // Make this return true when this Command no longer needs to run execute()
