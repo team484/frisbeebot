@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.image.CriteriaCollection;
 import edu.wpi.first.wpilibj.image.NIVision;
 import edu.wpi.first.wpilibj.image.ParticleAnalysisReport;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team484.frisbeebot.commands.CommandBase;
 import org.team484.frisbeebot.commands.StartAutonomous;
 
@@ -86,7 +87,7 @@ public class Robot extends IterativeRobot {
         if (periodics < 100) {
             periodics++;
         } else {
-            centerCalculate();
+            //centerCalculate();
             periodics = 0;
         }
         Timer.delay(0.01);
@@ -97,7 +98,6 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
-        //centerCalculate();
         Timer.delay(0.1);
     }
 

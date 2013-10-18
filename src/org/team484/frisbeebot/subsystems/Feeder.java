@@ -27,9 +27,9 @@ public class Feeder extends Subsystem {
     }
     public boolean checkFeeder() {
         if (tertiary.get() == false && secondary.get() == true) {
-            talon.set(-0.5);
+            talon.set(-0.25);
         } else if (secondary.get() == false && ir.get() == false) {
-            talon.set(-0.5);
+            talon.set(-0.25);
         } else {
             talon.set(0);
         }

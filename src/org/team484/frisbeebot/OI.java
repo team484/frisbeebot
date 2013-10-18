@@ -17,9 +17,9 @@ public class OI {
     Joystick stick1 = new Joystick(1);
     Joystick stick2 = new Joystick(2);
     Joystick stick3 = new Joystick(3);
-    Button j1b1 =  new JoystickButton(stick1, 1);
-    Button j1b2 = new JoystickButton(stick1, 2);
-    Button j1b3 = new JoystickButton(stick1, 3);
+    Button j1b1 =  new JoystickButton(stick2, 1);
+    Button j1b2 = new JoystickButton(stick2, 2);
+    Button j1b3 = new JoystickButton(stick2, 3);
     Button j1b8 = new JoystickButton(stick1, 8);
     public double getStick1X() {
         return stick1.getX();
@@ -59,11 +59,11 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     public OI() {
-        j1b2.whenPressed(new SolenoidOut());
-        j1b3.whenReleased(new SolenoidOut());
-        j1b3.whenPressed(new SolenoidIn());
-        j1b1.whileHeld(new ShooterOn());
-        j1b1.whenPressed(new FixFeeder());
+        j1b2.whenPressed(new SolenoidOut()); //Actually Joystick 2
+        j1b3.whenReleased(new SolenoidOut()); //Actually Joystick 2
+        j1b3.whenPressed(new SolenoidIn()); //Actually Joystick 2
+        j1b1.whileHeld(new ShooterOn()); //Actually Joystick 2
+        j1b1.whenPressed(new FixFeeder()); //Actually Joystick 2
     }
 }
 

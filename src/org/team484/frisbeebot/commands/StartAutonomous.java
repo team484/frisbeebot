@@ -30,12 +30,12 @@ public class StartAutonomous extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        addParallel(new ShooterOn(), 4);
-        addSequential(new SolenoidOut(), 1);
+        addParallel(new ShooterOn(), 7);
+        addSequential(new SolenoidOut(), 2);
         addSequential(new SolenoidIn(), 0.1);
-        addSequential(new SolenoidOut(), 1);
+        addSequential(new SolenoidOut(), 2);
         addSequential(new SolenoidIn(), 0.1);
-        addSequential(new SolenoidOut(), 1);
+        addSequential(new SolenoidOut(), 2);
         //addSequential(new SolenoidIn(), 0.1);
         //addSequential(new SolenoidOut(), 1);
     }

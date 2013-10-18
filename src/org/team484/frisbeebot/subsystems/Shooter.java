@@ -36,8 +36,8 @@ public class Shooter extends Subsystem {
         jaguar2.set(0);
     }
     public void shooterOn() {
-        jaguar1.set(1);
-        jaguar2.set(1);
+        jaguar1.set(0.8);
+        jaguar2.set(0.8);
         double j1;
         double j2;
         j1 = 0;
