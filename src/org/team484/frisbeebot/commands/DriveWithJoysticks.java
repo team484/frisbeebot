@@ -22,7 +22,7 @@ public class DriveWithJoysticks extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        drive.driveWithJoysticks(oi.getStick1X(), oi.getStick1Y());
+        drive.driveWithJoysticks(oi.getStick1X(), oi.getStick1Y(), oi.fineControl());
     }
 
     // Make this return true when this Command no longer needs to run execute()

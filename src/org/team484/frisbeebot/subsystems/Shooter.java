@@ -22,10 +22,13 @@ public class Shooter extends Subsystem {
         try {
             jaguar1 = new CANJaguar(1);
             jaguar2 = new CANJaguar(2);
+            //jaguar1.setVoltageRampRate(0.1);
+            //jaguar2.setVoltageRampRate(0.1);
         } catch(Exception e) {
             System.out.println(e.getMessage());
         }
     }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

@@ -16,6 +16,7 @@ public class Drive extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     RobotDrive robotDrive = new RobotDrive(1, 3, 2, 4);
+    double stick = 0;
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -27,7 +28,11 @@ public class Drive extends Subsystem {
     public void driveDoNothing() {
         robotDrive.drive(0, 0);
     }
-    public void driveWithJoysticks(double x, double y) {
+    public void driveWithJoysticks(double x, double y, boolean fineControl) {
+        if (fineControl) {
+            y = (y / 10);
+        }
         robotDrive.arcadeDrive(y, x);
+        
     }
 }

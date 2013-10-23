@@ -4,6 +4,7 @@
  */
 package org.team484.frisbeebot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team484.frisbeebot.commands.SolenoidOff;
@@ -17,6 +18,10 @@ public class SolenoidSub extends Subsystem {
     // here. Call these from Commands.
     Solenoid solenoid1 = new Solenoid(1);
     Solenoid solenoid2 = new Solenoid(2);
+    Feeder feeder;
+    public SolenoidSub(Feeder feeder) {
+        this.feeder = feeder;
+    }
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -27,8 +32,10 @@ public class SolenoidSub extends Subsystem {
         solenoid2.set(true);
     }
     public void solenoidIn() {
-        solenoid1.set(true);
-        solenoid2.set(false);
+        if (!solenoid1.get() && feeder.getIR()) {
+            solenoid1.set(true);
+            solenoid2.set(false);
+        }
     }
     public void solenoidOff() {
         solenoid1.set(false);

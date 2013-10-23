@@ -39,4 +39,7 @@ public class Feeder extends Subsystem {
     public void fixFeeder() {
         talon.set(0);
     }
+    public boolean getIR() {
+        return ir.get();
+    }
 }

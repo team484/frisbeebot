@@ -21,11 +21,15 @@ public class OI {
     Button j1b2 = new JoystickButton(stick2, 2);
     Button j1b3 = new JoystickButton(stick2, 3);
     Button j1b8 = new JoystickButton(stick1, 8);
+    Button j0b1 = new JoystickButton(stick1, 1);
     public double getStick1X() {
         return stick1.getX();
     }
     public double getStick1Y() {
         return stick1.getY();
+    }
+    public boolean fineControl() {
+        return j0b1.get();
     }
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
