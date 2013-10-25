@@ -6,6 +6,7 @@ package org.team484.frisbeebot.subsystems;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team484.frisbeebot.commands.DriveWithJoysticks;
 
 /**
@@ -17,22 +18,28 @@ public class Drive extends Subsystem {
     // here. Call these from Commands.
     RobotDrive robotDrive = new RobotDrive(1, 3, 2, 4);
     double stick = 0;
+    double s = 0;
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
         setDefaultCommand(new DriveWithJoysticks());
     }
     public void driveForward() {
-        robotDrive.drive(0.5, 0);
+        robotDrive.drive(0.3, 0);
+    }
+    public void driveBackward() {
+        robotDrive.drive(-0.5, 0);
     }
     public void driveDoNothing() {
         robotDrive.drive(0, 0);
     }
     public void driveWithJoysticks(double x, double y, boolean fineControl) {
         if (fineControl) {
-            y = (y / 10);
+            y = (y / 2);
+            x = (x / 2);
         }
+        s = Math.ceil(y * 100);
+        SmartDashboard.putNumber("speed", s);
         robotDrive.arcadeDrive(y, x);
-        
     }
 }
