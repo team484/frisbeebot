@@ -9,6 +9,7 @@ import org.team484.frisbeebot.commands.Hang;
 import org.team484.frisbeebot.commands.ShooterOn;
 import org.team484.frisbeebot.commands.SolenoidIn;
 import org.team484.frisbeebot.commands.SolenoidOut;
+import org.team484.frisbeebot.commands.Turn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -24,6 +25,7 @@ public class OI {
     Button j1b8 = new JoystickButton(stick1, 8);
     Button j0b1 = new JoystickButton(stick1, 1);
     Button j0b3 = new JoystickButton(stick1, 3);
+    Button j0b10 = new JoystickButton(stick1, 10);
     public double getStick1X() {
         return stick1.getX();
     }
@@ -71,6 +73,7 @@ public class OI {
         j1b1.whileHeld(new ShooterOn()); //Actually Joystick 2
         j1b1.whenPressed(new FixFeeder()); //Actually Joystick 2
         j0b3.whenPressed(new Hang());
+        //j0b10.whileHeld(new Turn());
     }
 }
 

@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Hang extends CommandGroup {
     
     public Hang() {
-        addSequential( new DriveForward(), 1);
+        addSequential( new DriveForward(), 1.5);
         addSequential(new DriveBackward(), 0.6);
         // Add Commands here:
         // e.g. addSequential(new Command1());
