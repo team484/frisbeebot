@@ -4,18 +4,16 @@
  */
 package org.team484.frisbeebot.commands;
 
-import org.team484.frisbeebot.subsystems.Feeder;
-
 /**
  *
  * @author Team484
  */
-public class CheckFeeder extends CommandBase {
+public class TurretStraight extends CommandBase {
     
-    public CheckFeeder() {
+    public TurretStraight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        //requires(feeder);
+        requires(turret);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +22,7 @@ public class CheckFeeder extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        //feeder.checkFeeder();
+        turret.TurretStraight();
     }
 
     // Make this return true when this Command no longer needs to run execute()

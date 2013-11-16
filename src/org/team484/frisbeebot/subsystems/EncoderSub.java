@@ -6,7 +6,7 @@ package org.team484.frisbeebot.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.team484.frisbeebot.commands.CommandBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team484.frisbeebot.commands.EncoderInupt;
 
 /**
@@ -26,7 +26,12 @@ public class EncoderSub extends Subsystem {
         encoder.start();
         encoder.reset();
     }
-    public void encoderInput() {
-        System.out.println(encoder.getDistance());        
+    public double encoderInput() {
+        SmartDashboard.putString("distance", encoder.getDistance() / 12 + " Feet");
+        SmartDashboard.putNumber("Speed", encoder.getRate());
+        return encoder.getDistance();
+    }
+    public void noData() {
+        
     }
 }

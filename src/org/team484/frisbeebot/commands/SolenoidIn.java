@@ -13,7 +13,7 @@ public class SolenoidIn extends CommandBase {
     public SolenoidIn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(solenoidsub);
+        //requires(solenoidsub);
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +22,7 @@ public class SolenoidIn extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        solenoidsub.solenoidIn();
+        //solenoidsub.solenoidIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -4,10 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team484.frisbeebot.OI;
 import org.team484.frisbeebot.subsystems.Drive;
-import org.team484.frisbeebot.subsystems.EncoderSub;
-import org.team484.frisbeebot.subsystems.Feeder;
-import org.team484.frisbeebot.subsystems.Shooter;
-import org.team484.frisbeebot.subsystems.SolenoidSub;
+import org.team484.frisbeebot.subsystems.Turret;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -20,10 +17,11 @@ public abstract class CommandBase extends Command {
     public static OI oi;
     // Create a single static instance of all of your subsystems
     public static Drive drive = new Drive();
-    public static Shooter shooter = new Shooter();
-    public static Feeder feeder = new Feeder();
-    public static SolenoidSub solenoidsub = new SolenoidSub(feeder);
-    public static EncoderSub encoderSub = new EncoderSub();
+    public static Turret turret = new Turret();
+    //public static Shooter shooter = new Shooter();
+    //public static Feeder feeder = new Feeder();
+    //public static SolenoidSub solenoidsub = new SolenoidSub(feeder);
+    //public static EncoderSub encoderSub = new EncoderSub();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely

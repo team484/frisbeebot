@@ -9,11 +9,10 @@ package org.team484.frisbeebot.commands;
  * @author Team484
  */
 public class EncoderInupt extends CommandBase {
-    
     public EncoderInupt() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(encoderSub);
+        //requires(encoderSub);
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +21,7 @@ public class EncoderInupt extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        encoderSub.encoderInput();
+        //encoderSub.encoderInput();
     }
 
     // Make this return true when this Command no longer needs to run execute()
