@@ -9,7 +9,6 @@ import org.team484.frisbeebot.commands.Hang;
 import org.team484.frisbeebot.commands.ShooterOn;
 import org.team484.frisbeebot.commands.SolenoidIn;
 import org.team484.frisbeebot.commands.SolenoidOut;
-import org.team484.frisbeebot.commands.Turn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,6 +30,12 @@ public class OI {
     }
     public double getStick1Y() {
         return stick1.getY();
+    }
+    public double getStick2X() {
+        return stick2.getX();
+    }
+    public double getStick2Y() {
+        return stick2.getY();
     }
     public boolean fineControl() {
         return j0b1.get();

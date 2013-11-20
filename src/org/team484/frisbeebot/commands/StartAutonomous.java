@@ -36,7 +36,6 @@ public class StartAutonomous extends CommandGroup {
         addSequential(new SolenoidOut(), 2);
         addSequential(new SolenoidIn(), 0.1);
         addSequential(new SolenoidOut(), 2);
-        addSequential(new EncoderInupt());
         //To shoot third frisbee
         
         //addSequential(new SolenoidIn(), 0.1);
